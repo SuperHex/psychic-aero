@@ -1,13 +1,5 @@
-//
-//  Registers.h
-//  Utopia
-//
-//  Created by Soei Wong on 15/6/30.
-//  Copyright (c) 2015年 Soei Wong. All rights reserved.
-//
-
-#ifndef Utopia_Registers_h
-#define Utopia_Registers_h
+#ifndef ___Registers__
+#define ___Registers__
 
 // First we will define registers on MPU6050
 // Here comes the accelerate

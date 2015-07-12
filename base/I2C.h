@@ -1,13 +1,6 @@
-//
-//  I2C.h
-//  Utopia
-//
-//  Created by Soei Wong on 15/7/10.
-//  Copyright (c) 2015年 Soei Wong. All rights reserved.
-//
 
-#ifndef __Utopia__I2C__
-#define __Utopia__I2C__
+#ifndef __I2C__
+#define __I2C__
 
 #ifndef F_CPU
 #define F_CPU 8000000

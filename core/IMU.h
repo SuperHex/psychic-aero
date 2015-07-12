@@ -1,12 +1,14 @@
 
-#ifndef Utopia_IMU_h
-#define Utopia_IMU_h
+#ifndef __IMU__
+#define __IMU__
 
-#include "../Base/I2C.h"
-#include "../Registers.h"
+#include "../base/I2C.h"
+#include "../config/Registers.h"
+#include "../base/container.h"
 
-//#include <tr1/tuple>
-using namespace std;
+// Warning:
+// beacuse of tuple.h is not avaliable on avr-gcc,
+// This library will be implement after container.
 
 namespace core
 {
@@ -42,7 +44,7 @@ namespace core
                 std::get<0>(a) + std::get<0>(b)
                ,std::get<1>(a) + std::get<1>(b)
                ,std::get<2>(a) + std::get<2>(b)
-            )
+            );
             return c;
         }
 
