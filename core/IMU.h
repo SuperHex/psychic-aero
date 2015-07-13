@@ -4,29 +4,33 @@
 
 #include "../base/I2C.h"
 #include "../config/Registers.h"
-#include "../base/container.h"
+#include "../base/container.hpp"
 
 // Warning:
-// beacuse of tuple.h is not avaliable on avr-gcc,
-// This library will be implement after container.
+// we are using an non-standard container library,
+// since the stl is not avaliable on avr-gcc platform.
+
+typedef base::container<int16_t> Chunk;
+typedef base::container<Chunk>   MeasureValue;
+typedef int16_t Factor;
 
 namespace core
 {
-    typedef std::tuple<int16_t, int16_t, int16_t> Chunk;
-    typedef std::tuple<Chunk, Chunk, Chunk> MeasureValue;
-    typedef int16_t Factor;
-
     class IMU
     {
     private:
         //I2C mpu;
-        I2C acc  (ACC_ADD , 0x00);
-        I2C gryo (GYRO_ADD, 0x00);
+        base::I2C acc;
+        base::I2C gyro;
 
     public:
 
         // Construct function
-        IMU();
+        IMU() : acc (ACC_ADD , 0x00)
+              , gyro(GYRO_ADD, 0x00)
+        {
+            // initialize here.
+        }
 
         // Convert a measure value to real value
         // fromMeasure :: Byte -> Byte -> Int
@@ -37,18 +41,7 @@ namespace core
 
         MeasureValue& getMeasure(MeasureValue& m);
 
-        template<typename T1, typename T2, typename T3>
-        std::tuple<T1,T2,T3> operator+(const std::tuple<T1,T2,T3>& a, const std::tuple<T1,T2,T3>& b)
-        {
-            auto c = std::make_tuple(
-                std::get<0>(a) + std::get<0>(b)
-               ,std::get<1>(a) + std::get<1>(b)
-               ,std::get<2>(a) + std::get<2>(b)
-            );
-            return c;
-        }
-
-        Chunk reduce(const MeasureValue&, Factor, Factor, Factor);
+        Chunk reduce(MeasureValue&, Factor, Factor, Factor);
     };
 }
 

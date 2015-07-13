@@ -35,10 +35,10 @@ namespace base
     private:
         unsigned char deviceAddress;
         unsigned char status;
-        I2C(unsigned char addr);
-        I2C(unsigned char id, unsigned char addr);
 
     public:
+        I2C(unsigned char addr);
+        I2C(unsigned char id, unsigned char addr);
         int writeByte(uint16_t reg, char data);
         unsigned char readByte(uint16_t addr);
         unsigned char transmit(unsigned int type);
