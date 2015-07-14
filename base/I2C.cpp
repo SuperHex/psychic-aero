@@ -23,6 +23,8 @@ namespace base
 
     base::I2C::I2C(unsigned char addr)
     {
+        TWSR = 0x00;
+        TWBR = 0x30;
         this -> deviceAddress = addr;
     }
 
