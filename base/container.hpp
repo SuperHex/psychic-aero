@@ -45,6 +45,12 @@ namespace base
     }
 
     template<class T>
+    container<T>::container()
+    {
+        T one,two,three;
+    }
+
+    template<class T>
     T& container<T>::get(int n)
     {
         switch (n)
