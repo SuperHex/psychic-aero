@@ -1,11 +1,3 @@
-//
-//  I2C.cpp
-//  Utopia
-//
-//  Created by Soei Wong on 15/7/10.
-//  Copyright (c) 2015年 Soei Wong. All rights reserved.
-//
-
 #include "I2C.h"
 
 namespace base

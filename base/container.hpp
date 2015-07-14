@@ -1,6 +1,8 @@
 #ifndef __container__
 #define __container__
 
+typedef int int16_t;
+
 namespace base
 {
     template<class T>
@@ -11,8 +13,27 @@ namespace base
     public:
         container();
         T& get(int n);
-        container<T>& operator+(container<T>&);
-        container<T>& operator*(int16_t&);
+        container<T>& operator+(container<T>& other)
+        {
+            this->get(0) = this->get(0) + other.get(0);
+            this->get(1) = this->get(1) + other.get(1);
+            this->get(2) = this->get(2) + other.get(2);
+            return *this;
+        }
+
+        container<T>& operator*(container<T>& other)
+        {
+            this->get(0) = this->get(0) * other.get(0);
+            this->get(1) = this->get(1) * other.get(1);
+            this->get(2) = this->get(2) * other.get(2);
+            return *this;
+        }
+
+        container<T>& operator*(float n)
+        {
+            for(int i = 0; i<3; i++) this->get(i) = this->get(i) * n;
+            return *this;
+        }
     };
 
     template<>
@@ -35,20 +56,6 @@ namespace base
             case 2 :
                 return three; break;
         }
-    }
-
-    template<class T>
-    container<T>& container<T>::operator+(container<T>& other)
-    {
-        for(int i = 0; i<3; i++) this->get(i) = this->get(i) + other.get(i);
-        return *this;
-    }
-
-    template<class T>
-    container<T>& container<T>::operator(*)(int16_t& n)
-    {
-        for(int i = 0; i<3; i++) this->get(i) * n;
-        return *this;
     }
 }
 #endif

@@ -2,10 +2,7 @@
 #ifndef __I2C__
 #define __I2C__
 
-#ifndef F_CPU
-#define F_CPU 8000000
-#endif
-
+#include "../config/config.h"
 #include <avr/io.h>
 #include <util/delay.h>
 #include <compat/twi.h>
