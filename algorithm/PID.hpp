@@ -47,7 +47,7 @@ namespace algorithm
     template<class T>
     T PID<T>::derivative(const T val)
     {
-        auto v = atan2((val - this->cont.get(2)), dt) * this->factor.get(2);
+        T v = atan2((val - this->cont.get(2)), dt) * this->factor.get(2);
         this->cont.get(2) = val;
         return v;
     }
@@ -55,7 +55,7 @@ namespace algorithm
     template<class T>
     T PID<T>::calculate(const T val)
     {
-        auto v = val - (feedback + setpoint);
+        T v = val - (feedback + setpoint);
         T p,i,d;
 
         #ifdef P_CONTROL

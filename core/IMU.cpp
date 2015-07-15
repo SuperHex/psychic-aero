@@ -7,9 +7,9 @@ int16_t core::IMU::fromByte(Byte lsb, Byte msb)
 
 MeasureValue& core::IMU::getRaw(MeasureValue& m)
 {
-    auto x = fromByte(this->acc.readByte(ACC_X_L), this->acc.readByte(ACC_X_H));
-    auto y = fromByte(this->acc.readByte(ACC_Y_L), this->acc.readByte(ACC_Y_H));
-    auto z = fromByte(this->acc.readByte(ACC_Z_L), this->acc.readByte(ACC_Z_H));
+    int16_t x = fromByte(this->acc.readByte(ACC_X_L), this->acc.readByte(ACC_X_H));
+    int16_t y = fromByte(this->acc.readByte(ACC_Y_L), this->acc.readByte(ACC_Y_H));
+    int16_t z = fromByte(this->acc.readByte(ACC_Z_L), this->acc.readByte(ACC_Z_H));
     m[0][0] = x;
     m[0][1] = y;
     m[0][2] = z;
@@ -29,8 +29,8 @@ MeasureValue core::IMU::reduce(MeasureValue& m, Vector& factor)
 
 Vector& core::IMU::toAngle(MeasureValue& raw, Vector& oldAngle)
 {
-    auto normalizedFactor = (raw[0] * raw[0]).foldWithAdd();
-    auto normalizedAcc    =  raw / normalizedFactor;
+    float  normalizedFactor = (raw[0] * raw[0]).foldWithAdd();
+    Vector normalizedAcc    =  raw[0] >>= (1 / normalizedFactor);
     // compute the real angle with acc and gyro
     // Magnet is not support yet.
     oldAngle[0] = NORMAL_ACC * atan2(normalizedAcc[1], normalizedAcc[2]) * ARC_PI

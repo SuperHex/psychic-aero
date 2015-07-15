@@ -36,7 +36,7 @@ namespace core
 
         // After get raw measure value, next step is do some math to get a
         // three-demension euler angle.
-        Vector        toAngle(Vector& raw);
+        Vector&       toAngle(MeasureValue& raw, Vector& oldAngle);
 
         // We can calculate euler angle from both acc and gyro measure.
         // And indeed we should merge this data to a single one since
