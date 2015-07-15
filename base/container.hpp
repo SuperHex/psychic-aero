@@ -13,6 +13,8 @@ namespace base
     public:
         container();
         T& get(int n);
+        T  foldWithAdd();
+        T  foldWithMul();
         container<T>& operator+(container<T>& other)
         {
             this->get(0) = this->get(0) + other.get(0);
@@ -29,7 +31,7 @@ namespace base
             return *this;
         }
 
-        container<T>& operator*(float n)
+        container<T>& operator>>=(T n)
         {
             for(int i = 0; i<3; i++) this->get(i) = this->get(i) * n;
             return *this;
@@ -60,19 +62,19 @@ namespace base
         }
     };
 
-    template<>
-    container<int16_t>::container()
-    {
-        this->one   = 0;
-        this->two   = 0;
-        this->three = 0;
-    }
-
-    template<class T>
-    container<T>::container()
-    {
-        T one,two,three;
-    }
+    // template<>
+    // container<int16_t>::container()
+    // {
+    //     this->one   = 0;
+    //     this->two   = 0;
+    //     this->three = 0;
+    // }
+    //
+    // template<class T>
+    // container<T>::container()
+    // {
+    //     T one,two,three;
+    // }
 
     template<class T>
     T& container<T>::get(int n)
@@ -86,6 +88,18 @@ namespace base
             case 2 :
                 return three; break;
         }
+    }
+
+    template<class T>
+    T container<T>::foldWithAdd()
+    {
+        return (this->get(0) + this->get(1) + this->get(2));
+    }
+
+    template<class T>
+    T container<T>::foldWithMul()
+    {
+        return (this->get(0) + this->get(1) + this->get(2));
     }
 }
 #endif
