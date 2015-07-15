@@ -8,7 +8,7 @@ typedef int int16_t;
 typedef unsigned char Byte;
 typedef float Factor;
 // frequency of microcontroller
-#define F_CPU 20000000UL
+#define F_CPU 16000000UL
 
 
 // -----* algorithm/PID *-----
