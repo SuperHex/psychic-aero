@@ -34,6 +34,30 @@ namespace base
             for(int i = 0; i<3; i++) this->get(i) = this->get(i) * n;
             return *this;
         }
+
+        container<T>& operator-(container<T>& other)
+        {
+            for(int i = 0; i<3; i++) this->get(i) = this->get(i) - other.get(i);
+            return *this;
+        }
+
+        container<T>& operator/(container<T>& other)
+        {
+            for(int i = 0; i<3; i++)
+            {
+                if(other.get(i) != 0) {
+                    this->get(i) = this->get(i) / other.get(i);
+                } else {
+                    // if divided by 0, hold on.
+                }
+            }
+            return *this;
+        }
+
+        T& operator[](int16_t index)
+        {
+            return this->get(index);
+        }
     };
 
     template<>

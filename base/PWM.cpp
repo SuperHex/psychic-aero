@@ -74,10 +74,10 @@ void base::PWM::setPrescaler(int16_t preScaler)
 }
 
 void base::PWM::run(int16_t enablePin
-        ,int16_t duty_Cycle
-        ,int16_t mode
-        ,int16_t prescaler
-        ,bool    invert)
+                   ,int16_t duty_Cycle
+                   ,int16_t mode
+                   ,int16_t prescaler
+                   ,bool    invert)
 {
     base::PWM::enablePin(enablePin);
     base::PWM::setDutyCycle(duty_Cycle);

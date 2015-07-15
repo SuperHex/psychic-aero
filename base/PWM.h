@@ -6,6 +6,9 @@
 
 namespace base
 {
+    // Reference website:
+    // https://sites.google.com/site/qeewiki/books/avr-guide/pwm-on-the-atmega328
+    // http://www.avrfreaks.net/forum/tut-c-newbies-guide-avr-pwm-incomplete?name=PNphpBB2&file=viewtopic&t=68302
     class PWM
     {
         void enablePin(int16_t);
