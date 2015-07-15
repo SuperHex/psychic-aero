@@ -6,6 +6,7 @@
 #include "../config/Registers.h"
 #include "../config/config.h"
 #include "../base/container.hpp"
+#include <math.h>
 
 // Warning:
 // we are using an non-standard container library,

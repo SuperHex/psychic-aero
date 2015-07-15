@@ -11,7 +11,6 @@ namespace base
         T one, two, three;
 
     public:
-        container();
         T& get(int n);
         T  foldWithAdd();
         T  foldWithMul();
@@ -61,20 +60,6 @@ namespace base
             return this->get(index);
         }
     };
-
-    // template<>
-    // container<int16_t>::container()
-    // {
-    //     this->one   = 0;
-    //     this->two   = 0;
-    //     this->three = 0;
-    // }
-    //
-    // template<class T>
-    // container<T>::container()
-    // {
-    //     T one,two,three;
-    // }
 
     template<class T>
     T& container<T>::get(int n)

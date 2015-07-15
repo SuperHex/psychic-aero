@@ -24,11 +24,18 @@ typedef float Factor;
 
 
 // -----* core/IMU *-----
+// our primitive Vector.
+// It store x,y,z value in v[0],v[1],v[2]
 typedef base::container<float>       Vector;
+// a measure value consist of three sensor
+// it will store acc in m[0], gyro in m[1], and mag in [2]
 typedef base::container<Vector>      MeasureValue;
 typedef float                        Factor;
 
 // complementary filter ratio
 #define Ka 1
-#define Kg 1.5
+#define Kb 1.5
+#define NORMAL_ACC (Ka/(Ka+Kb))
+#define NORMAL_GYR (Kb/(Ka+Kb))
+#define ARC_PI 57.2975 // a shortcut of 180/pi
 #endif
