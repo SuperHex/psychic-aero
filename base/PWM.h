@@ -11,6 +11,8 @@ namespace base
     // http://www.avrfreaks.net/forum/tut-c-newbies-guide-avr-pwm-incomplete?name=PNphpBB2&file=viewtopic&t=68302
     class PWM
     {
+
+    public:
         void enablePin(int16_t);
 
         // set duty cycle of our PWM wave
@@ -41,7 +43,7 @@ namespace base
 
         // set the prescaler factor,
         // It is used to adjust PWM frequency.
-        // It should be value of 8, 64, 256, and 1024.
+        // It should be value of 8, 64, 256, or 1024.
         void setPrescaler(int16_t);
 
         // you should only use this function to generate PWmM wave.
