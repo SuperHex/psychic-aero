@@ -17,9 +17,6 @@
 //      1 0 1 0           0 0 1
 //    Identifiter | Physical Address
 // and so on...
-#define EEPROM_ID   0xA0
-#define EEPROM_ADDR 0x00
-
 #define I2C_START 0
 #define I2C_DATA  1
 #define I2C_STOP  2

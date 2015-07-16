@@ -10,6 +10,10 @@ typedef float Factor;
 // frequency of microcontroller
 #define F_CPU 16000000UL
 
+// -----* base/I2C *------
+#define BAUD_RATE 96000
+#define TWSR_VALUE 0x00
+#define TWBR_VALUE ((F_CPU / BAUD_RATE) - 16) / (2 * TWSR_VALUE) + 1
 
 // -----* algorithm/PID *-----
 #define SAMPLE_TIME 100 // sample time = 100ms

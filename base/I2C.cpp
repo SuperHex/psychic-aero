@@ -13,8 +13,8 @@ namespace base
         //
         // where the TWBR is TWI Bit Rate Register,
         // and Prescaler(can be selected in TWSR) equal to 1 here.
-        TWSR = 0x00;
-        TWBR = 0x30;
+        TWSR = TWSR_VALUE;
+        TWBR = TWBR_VALUE;
 
         //   0 0 0 0         0 0 0             0
         // identifiter | physical addr | write/reada mode
@@ -23,8 +23,8 @@ namespace base
 
     base::I2C::I2C(unsigned char addr)
     {
-        TWSR = 0x00;
-        TWBR = 0x30;
+        TWSR = TWSR_VALUE;
+        TWBR = TWBR_VALUE;
         this -> deviceAddress = addr;
     }
 
