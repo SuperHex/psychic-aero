@@ -13,7 +13,7 @@ typedef float Factor;
 // -----* base/I2C *------
 #define BAUD_RATE 96000
 #define TWSR_VALUE 0x00
-#define TWBR_VALUE ((F_CPU / BAUD_RATE) - 16) / (2 * TWSR_VALUE) + 1
+#define TWBR_VALUE ((F_CPU / BAUD_RATE) - 16) / 2 + 1
 
 // -----* algorithm/PID *-----
 #define SAMPLE_TIME 100 // sample time = 100ms
@@ -26,6 +26,9 @@ typedef float Factor;
 // #define Ki 3.6
 // #define Kd 5.5
 
+// -----* algorithm/motoMap *-----
+#define CROSS_MODE  0
+#define DIRECT_MODE 1
 
 // -----* core/IMU *-----
 // our primitive Vector.

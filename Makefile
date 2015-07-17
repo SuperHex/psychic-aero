@@ -2,7 +2,7 @@ export MCU=atmega328
 export MAKE=/usr/local/CrossPack-AVR/bin/avr-gcc
 export BUILD_PATH=build
 
-all : I2C.o IMU.o container.h PID.h PWM.o
+all : I2C.o IMU.o container.h PID.h PWM.o motorMap.o util.h
 	cd $(BUILD_PATH) && \
 	$(MAKE) I2C.o IMU.o PWM.o
 
@@ -25,3 +25,9 @@ PID.h : algorithm/PID.hpp
 
 PWM.o : config/config.h
 	$(MAKE) -Os -mmcu=$(MCU) -c -std=c++11 base/PWM.cpp -o $(BUILD_PATH)/PWM.o
+
+motorMap.o : algorithm/motorMap.h algorithm/motorMap.cpp
+	$(MAKE) -Os -mmcu=$(MCU) -c -std=c++11 algorithm/motorMap.cpp -o $(BUILD_PATH)/motorMap.o
+
+util.h : util/util.template.hpp
+	$(MAKE) -Os -mmcu=$(MCU) -std=c++11 util/util.template.hpp -o $(BUILD_PATH)/util.h.gch
