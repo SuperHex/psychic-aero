@@ -5,7 +5,9 @@
 
 // -----* global *-----
 typedef int int16_t;
+typedef unsigned int uint16_t;
 typedef unsigned char Byte;
+typedef unsigned int size_t;
 typedef float Factor;
 // frequency of microcontroller
 #define F_CPU 16000000UL
@@ -14,6 +16,31 @@ typedef float Factor;
 #define BAUD_RATE 96000
 #define TWSR_VALUE 0x00
 #define TWBR_VALUE ((F_CPU / BAUD_RATE) - 16) / 2 + 1
+
+// -----* base/PWM *-----
+#define FAST_PWM          0
+#define PHASE_CORRECT_PWM 1
+// following is defined for Arduino Pro mini :
+#define PWM_PIN3  0
+#define PWM_PIN5  1
+#define PWM_PIN6  2
+#define PWM_PIN9  3
+#define PWM_PIN10 4
+#define PWM_PIN11 5
+
+// output register alias
+#define PWM_PORT_0 DDRD
+#define PWM_PIN_0  PD3
+#define PWM_PORT_1 DDRD
+#define PWM_PIN_1  PD5
+#define PWM_PORT_2 DDRD
+#define PWM_PIN_2  PD6
+#define PWM_PORT_3 DDRB
+#define PWM_PIN_3  PB1
+#define PWM_PORT_4 DDRB
+#define PWM_PIN_4  PB2
+#define PWM_PORT_5 DDRB
+#define PWM_PIN_5  PB3
 
 // -----* algorithm/PID *-----
 #define SAMPLE_TIME 100 // sample time = 100ms

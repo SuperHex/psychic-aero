@@ -4,12 +4,10 @@ export BUILD_PATH=build
 
 all : I2C.o IMU.o container.h PID.h PWM.o motorMap.o util.h
 	cd $(BUILD_PATH) && \
-	$(MAKE) I2C.o IMU.o PWM.o
+	$(MAKE) I2C.o IMU.o
 
 clean :
-	rm build/*.o
-	rm build/*.out
-	rm build/*.h.gch
+	rm build/*
 
 I2C.o : config/config.h base/I2C.cpp base/I2C.h
 	$(MAKE) -Os -mmcu=$(MCU) -c -std=c++11 base/I2C.cpp -o $(BUILD_PATH)/I2C.o
@@ -24,7 +22,7 @@ PID.h : algorithm/PID.hpp
 	$(MAKE) -Os -mmcu=$(MCU) -std=c++11 algorithm/PID.hpp -o $(BUILD_PATH)/PID.h.gch
 
 PWM.o : config/config.h
-	$(MAKE) -Os -mmcu=$(MCU) -c -std=c++11 base/PWM.cpp -o $(BUILD_PATH)/PWM.o
+	$(MAKE) -Os -mmcu=$(MCU) -c -std=c++11 base/PWM.template.hpp -o $(BUILD_PATH)/PWM.h.gch
 
 motorMap.o : algorithm/motorMap.h algorithm/motorMap.cpp
 	$(MAKE) -Os -mmcu=$(MCU) -c -std=c++11 algorithm/motorMap.cpp -o $(BUILD_PATH)/motorMap.o
