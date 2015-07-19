@@ -17,6 +17,10 @@ typedef float Factor;
 #define TWSR_VALUE 0x00
 #define TWBR_VALUE ((F_CPU / BAUD_RATE) - 16) / 2 + 1
 
+// -----* base/SPI *-----
+#define MASTER_MODE 0
+#define SLAVE_MODE  1
+
 // -----* base/PWM *-----
 #define FAST_PWM          0
 #define PHASE_CORRECT_PWM 1

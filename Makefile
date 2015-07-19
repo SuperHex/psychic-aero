@@ -1,8 +1,9 @@
 export MCU=atmega328
 export MAKE=/usr/local/CrossPack-AVR/bin/avr-gcc
 export BUILD_PATH=build
+export MAKE_FLAGS= -Os -std=c++11 -mmcu=$(MCU)
 
-all : I2C.o IMU.o container.h PID.h PWM.o motorMap.o util.h
+all : I2C.o IMU.o container.h PID.h PWM.o motorMap.o util.h SPI.h
 	cd $(BUILD_PATH) && \
 	$(MAKE) I2C.o IMU.o
 
@@ -29,3 +30,6 @@ motorMap.o : algorithm/motorMap.h algorithm/motorMap.cpp
 
 util.h : util/util.template.hpp
 	$(MAKE) -Os -mmcu=$(MCU) -std=c++11 util/util.template.hpp -o $(BUILD_PATH)/util.h.gch
+
+SPI.h : base/SPI.template.hpp
+	$(MAKE) $(MAKE_FLAGS) base/SPI.template.hpp -o $(BUILD_PATH)/SPI.h.gch
