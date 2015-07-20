@@ -21,8 +21,8 @@ namespace base
              |  (1 << PB5)   // set SCK  as output
              |  (1 << PB2);  // set SS'  as output since we have only one slave
         SPCR  = (1 << SPE)   // enable SPI
-              | (1 << MSTR)  // set SPI as master
-              | (1 << SPR0); // set clock as F_CPU / 16
+             |  (1 << MSTR)  // set SPI as master
+             |  (1 << SPR0); // set clock as F_CPU / 16
     }
 
     template<>

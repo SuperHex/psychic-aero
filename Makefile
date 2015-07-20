@@ -5,7 +5,7 @@ export MAKE_FLAGS= -Os -std=c++11 -mmcu=$(MCU)
 
 all : I2C.o IMU.o container.h PID.h PWM.o motorMap.o util.h SPI.h
 	cd $(BUILD_PATH) && \
-	$(MAKE) I2C.o IMU.o
+	$(MAKE) I2C.o IMU.o motorMap.o
 
 clean :
 	rm build/*
