@@ -8,6 +8,7 @@ namespace base
 {
     class SPI
     {
+    public:
         template<size_t Mode>
         void inline init();
         void transmit(Byte& data);

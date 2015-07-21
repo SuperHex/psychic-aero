@@ -6,6 +6,7 @@
 // -----* global *-----
 typedef int                      int16_t;
 typedef unsigned int             uint16_t;
+typedef unsigned long int        uint32_t;
 typedef unsigned char            Byte;
 typedef unsigned int             size_t;
 typedef float                    Factor;
@@ -20,11 +21,37 @@ typedef float                    Factor;
 // frequency of microcontroller
 #define F_CPU 16000000UL
 
+// Pin and Port
+#define PIN_2 2
+#define PIN_3 3
+#define PIN_4 4
+#define PIN_5 5
+#define PIN_6 6
+#define PIN_7 7
+#define PIN_8 8
+#define PIN_9 9
+#define PIN_10 10
+#define PIN_11 11
+#define PIN_12 12
+#define PIN_13 13
+#define PIN_A0 14
+#define PIN_A1 15
+#define PIN_A2 16
+#define PIN_A3 17
+#define PIN_A4 27
+#define PIN_A5 28
+
 // -----* base/I2C *------
 #ifdef  __I2C__
 #define BAUD_RATE 96000
 #define TWSR_VALUE 0x00
 #define TWBR_VALUE ((F_CPU / BAUD_RATE) - 16) / 2 + 1
+#endif
+
+// -----* base/IO  *-----
+#ifdef   __IO_Util__
+#define HIGH 1
+#define LOW  0
 #endif
 
 // -----* base/SPI *-----
