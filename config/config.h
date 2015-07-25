@@ -68,12 +68,10 @@ typedef float                    Factor;
 #endif
 
 // -----* base/IO  *-----
-#ifdef   __IO_Util__
 #define HIGH 1
 #define LOW  0
 #define OUTPUT 1
 #define INPUT  0
-#endif
 
 // -----* base/SPI *-----
 #ifdef  __SPI__

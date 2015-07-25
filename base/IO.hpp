@@ -1,5 +1,5 @@
-#ifndef __ICU__
-#define __ICU__
+#ifndef __IO__
+#define __IO__
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
