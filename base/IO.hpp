@@ -7,10 +7,10 @@
 
  namespace base
  {
-     volatile uint16_t base::calculatePrescaler();
-     Byte base::pinToMask(uint16_t pin);
-     Byte* base::inputRegister(uint16_t pin);
-     uint32_t base::pulseLength(uint16_t pin, bool state, uint32_t timeout);
+     uint16_t calculatePrescaler();
+     Byte pinToMask(uint16_t);
+     Byte* inputRegister(uint16_t);
+     uint32_t pulseLength(uint16_t, bool, uint32_t);
  }
 
 #endif
