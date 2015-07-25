@@ -41,6 +41,25 @@ typedef float                    Factor;
 #define PIN_A4 27
 #define PIN_A5 28
 
+// -----* algorithm/PID *-----
+#ifdef  __PID__
+#define SAMPLE_TIME 100 // sample time = 100ms
+#define dt (SAMPLE_TIME) / F_CPU
+#define OUTPUT_CLAMP true
+#define P_CONTROL    true
+#define I_CONTROL    true
+#define D_CONTROL    true
+// #define Kp 2.8
+// #define Ki 3.6
+// #define Kd 5.5
+#endif
+
+// -----* algorithm/motoMap *-----
+#ifdef  __motorMap__
+#define CROSS_MODE  0
+#define DIRECT_MODE 1
+#endif
+
 // -----* base/I2C *------
 #ifdef  __I2C__
 #define BAUD_RATE 96000
@@ -52,6 +71,8 @@ typedef float                    Factor;
 #ifdef   __IO_Util__
 #define HIGH 1
 #define LOW  0
+#define OUTPUT 1
+#define INPUT  0
 #endif
 
 // -----* base/SPI *-----
@@ -85,25 +106,6 @@ typedef float                    Factor;
 #define PWM_PIN_4  PB2
 #define PWM_PORT_5 DDRB
 #define PWM_PIN_5  PB3
-#endif
-
-// -----* algorithm/PID *-----
-#ifdef  __PID__
-#define SAMPLE_TIME 100 // sample time = 100ms
-#define dt (SAMPLE_TIME) / F_CPU
-#define OUTPUT_CLAMP true
-#define P_CONTROL    true
-#define I_CONTROL    true
-#define D_CONTROL    true
-// #define Kp 2.8
-// #define Ki 3.6
-// #define Kd 5.5
-#endif
-
-// -----* algorithm/motoMap *-----
-#ifdef  __motorMap__
-#define CROSS_MODE  0
-#define DIRECT_MODE 1
 #endif
 
 // -----* core/IMU *-----

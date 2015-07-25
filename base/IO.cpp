@@ -23,7 +23,7 @@ namespace base
     }
 
 
-    Byte pinToMask(uint16_t pin)
+    Byte pinToMask(uint8_t pin)
     {
         switch (pin) {
             case PIN_2 :
@@ -65,7 +65,25 @@ namespace base
         }
     }
 
-    Byte* inputRegister(uint16_t pin)
+    Byte* pinToPort(uint8_t pin)
+    {
+        Byte* reg;
+        if (pin >= PIN_2 && pin <= PIN_7)        *reg = PORTD;
+        else if (pin >= PIN_12 && pin <= PIN_13) *reg = PINB;
+        else if (pin >= PIN_A0 && pin <= PIN_A5) *reg = PINC;
+        return reg;
+    }
+
+    Byte* pinToDDR(uint8_t pin)
+    {
+        Byte* reg;
+        if (pin >= PIN_2 && pin <= PIN_7)        *reg = DDRD;
+        else if (pin >= PIN_12 && pin <= PIN_13) *reg = DDRB;
+        else if (pin >= PIN_A0 && pin <= PIN_A5) *reg = DDRC;
+        return reg;
+    }
+
+    Byte* inputRegister(uint8_t pin)
     {
         Byte* reg;
         if (pin >= PIN_2 && pin <= PIN_7)        *reg = PIND;
@@ -74,7 +92,7 @@ namespace base
         return reg;
     }
 
-    uint32_t pulseLength(uint16_t pin, bool state, uint32_t timeout)
+    uint32_t pulseLength(uint8_t pin, bool state, uint32_t timeout)
     {
         uint32_t duration;
         Byte pinMask = pinToMask(pin);
@@ -99,5 +117,17 @@ namespace base
         // It adds the amount of fixed overhead cycles (16) to get
         // total clock cycles during the pulse. "
         return (duration * 21 + 16) / 16;
+    }
+
+    void pinMode(uint8_t pin, bool mode)
+    {
+        mode ? (*pinToDDR(pin) |= pinToMask(pin))
+             : (*pinToDDR(pin) ^= pinToMask(pin));
+    }
+
+    void pinState(uint8_t pin, bool state)
+    {
+        state ? (*pinToPort(pin) |= pinToMask(pin))
+              : (*pinToPort(pin) ^= pinToMask(pin));
     }
 }

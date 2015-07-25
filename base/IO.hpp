@@ -8,9 +8,22 @@
  namespace base
  {
      uint16_t calculatePrescaler();
-     Byte pinToMask(uint16_t);
-     Byte* inputRegister(uint16_t);
-     uint32_t pulseLength(uint16_t, bool, uint32_t);
+     Byte     pinToMask(uint8_t pin);
+     Byte*    pinToPort(uint8_t pin);
+     Byte*    pinToDDR(uint8_t pin);
+     Byte*    inputRegister(uint8_t pin);
+
+     // Measure pulse length on given pin.
+     // It will return a time in microseconds(us).
+     uint32_t pulseLength(uint8_t pin, bool state, uint32_t timeout);
+
+     // Set a pin as input or output.
+     // Can be used as pinMode(PIN_3, OUTPUT)
+     void     pinMode(uint8_t pin, bool mode);
+
+     // Used to set high or low to a pin.
+     // Can be used as pinState(PIN_3, HIGH)
+     void     pinState(uint8_t pin, bool state);
  }
 
 #endif
