@@ -6,8 +6,8 @@ namespace module
 
     Sonar::Sonar(uint8_t trig, uint8_t echo)
     {
-        pinMode(trig, INPUT);
-        pinMode(echo, OUTPUT);
+        pinDirection(trig, OUTPUT);
+        pinDirection(echo, INPUT);
         this->_trig = trig;
         this->_echo = echo;
     }
