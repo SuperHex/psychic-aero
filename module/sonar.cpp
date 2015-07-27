@@ -1,4 +1,4 @@
-#include "sonar.hpp"
+#include "sonar.h"
 
 namespace module
 {
