@@ -119,15 +119,15 @@ namespace base
         return (duration * 21 + 16) / 16;
     }
 
-    void pinMode(uint8_t pin, bool mode)
+    void pinDirection(uint8_t pin, bool mode)
     {
         mode ? (*pinToDDR(pin) |= pinToMask(pin))
-             : (*pinToDDR(pin) ^= pinToMask(pin));
+             : (*pinToDDR(pin) &= ~(pinToMask(pin)));
     }
 
     void pinState(uint8_t pin, bool state)
     {
         state ? (*pinToPort(pin) |= pinToMask(pin))
-              : (*pinToPort(pin) ^= pinToMask(pin));
+              : (*pinToPort(pin) &= ~(pinToMask(pin)));
     }
 }

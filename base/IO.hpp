@@ -19,7 +19,7 @@
 
      // Set a pin as input or output.
      // Can be used as pinMode(PIN_3, OUTPUT)
-     void     pinMode(uint8_t pin, bool mode);
+     void     pinDirection(uint8_t pin, bool mode);
 
      // Used to set high or low to a pin.
      // Can be used as pinState(PIN_3, HIGH)
