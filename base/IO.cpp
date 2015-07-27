@@ -1,4 +1,4 @@
-#include "IO.hpp"
+#include "IO.h"
 
 namespace base
 {
@@ -65,30 +65,30 @@ namespace base
         }
     }
 
-    Byte* pinToPort(uint8_t pin)
+    volatile Byte* pinToPort(uint8_t pin)
     {
-        Byte* reg;
-        if (pin >= PIN_2 && pin <= PIN_7)        *reg = PORTD;
-        else if (pin >= PIN_12 && pin <= PIN_13) *reg = PINB;
-        else if (pin >= PIN_A0 && pin <= PIN_A5) *reg = PINC;
+        volatile Byte* reg;
+        if (pin >= PIN_2 && pin <= PIN_7)        reg = &PORTD;
+        else if (pin >= PIN_8 && pin <= PIN_13)  reg = &PORTB;
+        else if (pin >= PIN_A0 && pin <= PIN_A5) reg = &PORTC;
         return reg;
     }
 
-    Byte* pinToDDR(uint8_t pin)
+    volatile Byte* pinToDDR(uint8_t pin)
     {
-        Byte* reg;
-        if (pin >= PIN_2 && pin <= PIN_7)        *reg = DDRD;
-        else if (pin >= PIN_12 && pin <= PIN_13) *reg = DDRB;
-        else if (pin >= PIN_A0 && pin <= PIN_A5) *reg = DDRC;
+        volatile Byte* reg;
+        if (pin >= PIN_2 && pin <= PIN_7)        reg = &DDRD;
+        else if (pin >= PIN_8 && pin <= PIN_13)  reg = &DDRB;
+        else if (pin >= PIN_A0 && pin <= PIN_A5) reg = &DDRC;
         return reg;
     }
 
-    Byte* inputRegister(uint8_t pin)
+    volatile Byte* inputRegister(uint8_t pin)
     {
-        Byte* reg;
-        if (pin >= PIN_2 && pin <= PIN_7)        *reg = PIND;
-        else if (pin >= PIN_12 && pin <= PIN_13) *reg = PINB;
-        else if (pin >= PIN_A0 && pin <= PIN_A5) *reg = PINC;
+        volatile Byte* reg;
+        if (pin >= PIN_2 && pin <= PIN_7)        reg = &PIND;
+        else if (pin >= PIN_8 && pin <= PIN_13)  reg = &PINB;
+        else if (pin >= PIN_A0 && pin <= PIN_A5) reg = &PINC;
         return reg;
     }
 
@@ -99,13 +99,13 @@ namespace base
         Byte stateMask = state ? pinMask : 0;
         uint32_t retry = 0;
         // wait for previous signal stop
-        while(*inputRegister(pin) & pinMask == stateMask)
+        while((*inputRegister(pin) & pinMask) == stateMask)
             if(retry++ == timeout) return 0;
         // wait for assigned signal start
-        while(*inputRegister(pin) & pinMask != stateMask)
+        while((*inputRegister(pin) & pinMask) != stateMask)
             if(retry++ == timeout) return 0;
         // real count start
-        while(*inputRegister(pin) & pinMask == stateMask)
+        while((*inputRegister(pin) & pinMask) == stateMask)
         {
             if(retry++ == timeout) return 0;
             duration++;

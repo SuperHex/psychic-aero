@@ -9,9 +9,9 @@
  {
      uint16_t calculatePrescaler();
      Byte     pinToMask(uint8_t pin);
-     Byte*    pinToPort(uint8_t pin);
-     Byte*    pinToDDR(uint8_t pin);
-     Byte*    inputRegister(uint8_t pin);
+     volatile Byte*    pinToPort(uint8_t pin);
+     volatile Byte*    pinToDDR(uint8_t pin);
+     volatile Byte*    inputRegister(uint8_t pin);
 
      // Measure pulse length on given pin.
      // It will return a time in microseconds(us).
