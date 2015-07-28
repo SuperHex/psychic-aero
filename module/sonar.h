@@ -2,7 +2,7 @@
 #define __sonar__
 
 #include "../config/config.h"
-#include "../base/IO.hpp"
+#include "../base/IO.h"
 #include <avr/io.h>
 #include <util/delay.h>
 

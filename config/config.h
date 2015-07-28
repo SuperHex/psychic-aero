@@ -74,13 +74,10 @@ typedef float                    Factor;
 #define INPUT  0
 
 // -----* base/SPI *-----
-#ifdef  __SPI__
 #define MASTER_MODE 0
 #define SLAVE_MODE  1
-#endif
 
 // -----* base/PWM *-----
-#ifdef  __PWM__
 #define FAST_PWM          0
 #define PHASE_CORRECT_PWM 1
 // following is defined for Arduino Pro mini :
@@ -104,7 +101,6 @@ typedef float                    Factor;
 #define PWM_PIN_4  PB2
 #define PWM_PORT_5 DDRB
 #define PWM_PIN_5  PB3
-#endif
 
 // -----* core/IMU *-----
 #ifdef  __IMU__

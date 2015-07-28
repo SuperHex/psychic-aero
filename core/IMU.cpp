@@ -7,16 +7,16 @@ int16_t core::IMU::fromByte(Byte lsb, Byte msb)
 
 MeasureValue& core::IMU::getRaw(MeasureValue& m)
 {
-    int16_t x = fromByte(this->acc.readByte(ACC_X_L), this->acc.readByte(ACC_X_H));
-    int16_t y = fromByte(this->acc.readByte(ACC_Y_L), this->acc.readByte(ACC_Y_H));
-    int16_t z = fromByte(this->acc.readByte(ACC_Z_L), this->acc.readByte(ACC_Z_H));
+    int16_t x = fromByte(this->mpu.readByte(ACC_X_L), this->mpu.readByte(ACC_X_H));
+    int16_t y = fromByte(this->mpu.readByte(ACC_Y_L), this->mpu.readByte(ACC_Y_H));
+    int16_t z = fromByte(this->mpu.readByte(ACC_Z_L), this->mpu.readByte(ACC_Z_H));
     m[0][0] = x;
     m[0][1] = y;
     m[0][2] = z;
 
-    x = fromByte(this->gyro.readByte(GYRO_X_L), this->gyro.readByte(GYRO_X_H));
-    y = fromByte(this->gyro.readByte(GYRO_Y_L), this->gyro.readByte(GYRO_Y_H));
-    z = fromByte(this->gyro.readByte(GYRO_Z_L), this->gyro.readByte(GYRO_Z_H));
+    x = fromByte(this->mpu.readByte(GYRO_X_L), this->mpu.readByte(GYRO_X_H));
+    y = fromByte(this->mpu.readByte(GYRO_Y_L), this->mpu.readByte(GYRO_Y_H));
+    z = fromByte(this->mpu.readByte(GYRO_Z_L), this->mpu.readByte(GYRO_Z_H));
     m[1][0] = x;
     m[1][1] = y;
     m[1][2] = z;

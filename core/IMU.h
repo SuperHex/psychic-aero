@@ -8,22 +8,18 @@
 #include "../base/container.hpp"
 #include <math.h>
 
-// Warning:
-// we are using an non-standard container library,
-// since the stl is not avaliable on avr-gcc platform.
 namespace core
 {
     class IMU
     {
     private:
-        base::I2C acc;
-        base::I2C gyro;
+        base::I2C mpu;
 
     public:
-        IMU() : acc (ACC_ADD , 0x00)
-              , gyro(GYRO_ADD, 0x00)
+        IMU() : mpu(MPU6050)
         {
-            // initialize here.
+            // unable sleep mode
+            mpu.writeByte(PWR_MGMT_1, 0x00);
         }
 
         // This function using the base/I2C library to communicate with
