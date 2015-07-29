@@ -21,15 +21,22 @@ namespace algorithm
         PID(T setpoint, float Kp, float Ki, float Kd)
         {
             this->setpoint  = setpoint;
-            this->factor[0] = Kp;
-            this->factor[1] = Ki;
-            this->factor[2] = Kd;
+            this->factor[0] = Kp / (Kp + Ki + Kd);
+            this->factor[1] = Ki / (Kp + Ki + Kd);
+            this->factor[2] = Kd / (Kp + Ki + Kd);
         }
+        void newSetpoint(T);
         T proportional(T);
         T integral(T);
         T derivative(T);
         T calculate(T);
     };
+
+    template<class T>
+    void PID<T>::newSetpoint(T val)
+    {
+        this->setpoint = val;
+    }
 
     template<class T>
     T PID<T>::proportional(T val)

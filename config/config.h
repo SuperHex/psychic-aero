@@ -109,7 +109,6 @@ typedef float                    Factor;
 #define NORMAL_GYR (Kb/(Ka+Kb))
 #define ARC_PI 57.2975 // a shortcut of 180/pi
 #define SAMPLE_TIME 100 // sample time = 100ms
-#define dt (SAMPLE_TIME) / F_CPU
 #endif
 
 #endif

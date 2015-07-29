@@ -11,6 +11,10 @@ namespace base
         T one, two, three;
 
     public:
+        container() : one(), two(), three()
+        {
+            // default construct function
+        }
         T& get(int n);
         T  foldWithAdd();
         T  foldWithMul();
