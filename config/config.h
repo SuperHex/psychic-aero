@@ -42,9 +42,8 @@ typedef float                    Factor;
 #define PIN_A5 28
 
 // -----* algorithm/PID *-----
-#ifdef  __PID__
 #define SAMPLE_TIME 100 // sample time = 100ms
-#define dt (SAMPLE_TIME) / F_CPU
+#define dt ((SAMPLE_TIME) / F_CPU)
 #define OUTPUT_CLAMP true
 #define P_CONTROL    true
 #define I_CONTROL    true
@@ -52,7 +51,6 @@ typedef float                    Factor;
 // #define Kp 2.8
 // #define Ki 3.6
 // #define Kd 5.5
-#endif
 
 // -----* algorithm/motoMap *-----
 #ifdef  __motorMap__

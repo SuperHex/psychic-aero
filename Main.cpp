@@ -1,3 +1,5 @@
+#include "algorithm/motorMap.h"
+#include "algorithm/PID.hpp"
 #include "base/container.hpp"
 #include "base/I2C.h"
 #include "base/IO.h"

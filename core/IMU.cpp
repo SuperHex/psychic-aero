@@ -24,13 +24,13 @@ MeasureValue& core::IMU::getRaw(MeasureValue& m)
 
 MeasureValue core::IMU::reduce(MeasureValue& m, Vector& factor)
 {
-    return m >>= factor;
+    return m * factor;
 }
 
 Vector& core::IMU::toAngle(MeasureValue& raw, Vector& oldAngle)
 {
     float  normalizedFactor = (raw[0] * raw[0]).foldWithAdd();
-    Vector normalizedAcc    =  raw[0] >>= (1 / normalizedFactor);
+    Vector normalizedAcc    =  raw[0] * (1 / normalizedFactor);
     // compute the real angle with acc and gyro
     // Magnet is not support yet.
     oldAngle[0] = NORMAL_ACC * atan2(normalizedAcc[1], normalizedAcc[2]) * ARC_PI

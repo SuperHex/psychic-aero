@@ -30,7 +30,7 @@ namespace base
             return *this;
         }
 
-        container<T>& operator>>=(T n)
+        container<T>& operator*(T n)
         {
             for(int i = 0; i<3; i++) this->get(i) = this->get(i) * n;
             return *this;

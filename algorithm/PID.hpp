@@ -13,47 +13,47 @@ namespace algorithm
     {
     private:
         base::container<float> factor;
-        base::container<T> cont;
+        base::container<T> previous;
         T setpoint;
         T feedback;
 
     public:
         PID(T setpoint, float Kp, float Ki, float Kd)
         {
-            this->setpoint      = setpoint;
-            this->factor.get(0) = Kp;
-            this->factor.get(1) = Ki;
-            this->factor.get(2) = Kd;
+            this->setpoint  = setpoint;
+            this->factor[0] = Kp;
+            this->factor[1] = Ki;
+            this->factor[2] = Kd;
         }
-        T proportional(const T);
-        T integral(const T);
-        T derivative(const T);
-        T calculate(const T);
+        T proportional(T);
+        T integral(T);
+        T derivative(T);
+        T calculate(T);
     };
 
     template<class T>
-    T PID<T>::proportional(const T val)
+    T PID<T>::proportional(T val)
     {
-        return val * this->factor.get(0);
+        return val * this->factor[0];
     }
 
     template<class T>
-    T PID<T>::integral(const T val)
+    T PID<T>::integral(T val)
     {
-        this->cont.get(1) += (this->factor.get(1) * val * dt);
-        return this->cont.get(1);
+        this->previous[1] = this->previous[1] + (val * this->factor[1] * dt);
+        return this->previous[1];
     }
 
     template<class T>
-    T PID<T>::derivative(const T val)
+    T PID<T>::derivative(T val)
     {
-        T v = atan2((val - this->cont.get(2)), dt) * this->factor.get(2);
-        this->cont.get(2) = val;
+        T v = (val - this->previous[2]) * this->factor[2];
+        this->previous[2] = val;
         return v;
     }
 
     template<class T>
-    T PID<T>::calculate(const T val)
+    T PID<T>::calculate(T val)
     {
         T v = val - (feedback + setpoint);
         T p,i,d;
