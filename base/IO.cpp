@@ -134,18 +134,18 @@ namespace base
     volatile Byte* pinToTCCRA(uint8_t pin)
     {
         volatile Byte* reg;
-        if(pin == PIN_6  || pin == PIN_5)  reg = &TCCR0A;
-        if(pin == PIN_9  || pin == PIN_9)  reg = &TCCR1A;
-        if(pin == PIN_11 || pin == PIN_3)  reg = &TCCR2A;
+        if(pin == PIN_6  || pin == PIN_5)   reg = &TCCR0A;
+        if(pin == PIN_9  || pin == PIN_10)  reg = &TCCR1A;
+        if(pin == PIN_11 || pin == PIN_3)   reg = &TCCR2A;
         return reg;
     }
 
     volatile Byte* pinToTCCRB(uint8_t pin)
     {
         volatile Byte* reg;
-        if(pin == PIN_6  || pin == PIN_5)  reg = &TCCR0B;
-        if(pin == PIN_9  || pin == PIN_9)  reg = &TCCR1B;
-        if(pin == PIN_11 || pin == PIN_3)  reg = &TCCR2B;
+        if(pin == PIN_6  || pin == PIN_5)   reg = &TCCR0B;
+        if(pin == PIN_9  || pin == PIN_10)  reg = &TCCR1B;
+        if(pin == PIN_11 || pin == PIN_3)   reg = &TCCR2B;
         return reg;
     }
 
