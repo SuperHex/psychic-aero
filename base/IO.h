@@ -9,10 +9,16 @@
  {
      uint16_t calculatePrescaler();
      Byte     pinToMask(uint8_t pin);
-     volatile Byte*    pinToPort(uint8_t pin);
-     volatile Byte*    pinToDDR(uint8_t pin);
-     volatile Byte*    inputRegister(uint8_t pin);
-
+     volatile Byte*   pinToPort(uint8_t pin);
+     volatile Byte*   pinToDDR(uint8_t pin);
+     volatile Byte*   inputRegister(uint8_t pin);
+     volatile Byte*   pinToTCCRA(uint8_t pin);
+     uint8_t fastModeTCCRA(uint8_t pin);
+     uint8_t phaseModeTCCRA(uint8_t pin);
+     volatile Byte*   pinToTCCRB(uint8_t pin);
+     uint8_t MaskTCCRB(uint8_t pin);
+     volatile uint8_t*  pinToOCR(uint8_t pin);
+     volatile uint16_t* pinToOCR16(uint8_t pin);
      // Measure pulse length on given pin.
      // It will return a time in microseconds(us).
      uint32_t pulseLength(uint8_t pin, bool state, uint32_t timeout);

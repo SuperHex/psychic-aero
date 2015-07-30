@@ -75,6 +75,8 @@ typedef float                    Factor;
 #define MASTER_MODE 0
 #define SLAVE_MODE  1
 
+// -----* base/USART *-----
+
 // -----* base/PWM *-----
 #define FAST_PWM          0
 #define PHASE_CORRECT_PWM 1

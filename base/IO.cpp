@@ -83,6 +83,72 @@ namespace base
         return reg;
     }
 
+    volatile uint8_t* pinToOCR(uint8_t pin)
+    {
+        volatile Byte*     reg;
+        if(pin == PIN_6)  reg = &OCR0A;
+        if(pin == PIN_5)  reg = &OCR0B;
+        if(pin == PIN_11) reg = &OCR2A;
+        if(pin == PIN_3)  reg = &OCR2B;
+        return reg;
+    }
+
+    uint8_t fastModeTCCRA(uint8_t pin)
+    {
+        if(pin == PIN_6 || pin == PIN_5)
+            return (1 << WGM00) |  (1 <<WGM01) | (1 << COM0A1) |  (1 <<COM0B1);
+        if(pin == PIN_9 || pin == PIN_10)
+            return (1 << WGM10) | (1 << COM1A1) |  (1 <<COM1B1);
+        if(pin == PIN_11 || pin == PIN_3)
+            return (1 << WGM20) |  (1 <<WGM21) | (1 << COM2A1) |  (1 <<COM2B1);
+    }
+
+    uint8_t phaseModeTCCRA(uint8_t pin)
+    {
+        if(pin == PIN_6 || pin == PIN_5)
+            return (1 << WGM00) | (1 << COM0A1) | (1 << COM0B1);
+        if(pin == PIN_9 || pin == PIN_10)
+            return (1 << WGM10) | (1 << COM1A1) | (1 << COM1B1);
+        if(pin == PIN_11 || pin == PIN_3)
+            return (1 << WGM20) | (1 << COM2A1) | (1 << COM2B1);
+    }
+
+    uint8_t MaskTCCRB(uint8_t pin)
+    {
+        if(pin == PIN_6 || pin == PIN_5)
+            return (1 << CS00);
+        if(pin == PIN_9 || pin == PIN_10)
+            return (1 << CS10);
+        if(pin == PIN_11 || pin == PIN_3)
+            return (1 << CS20);
+    }
+
+    volatile uint16_t* pinToOCR16(uint8_t pin)
+    {
+        volatile uint16_t* reg;
+        if(pin == PIN_9)  reg = &OCR1A;
+        if(pin == PIN_10) reg = &OCR1B;
+        return reg;
+    }
+
+    volatile Byte* pinToTCCRA(uint8_t pin)
+    {
+        volatile Byte* reg;
+        if(pin == PIN_6  || pin == PIN_5)  reg = &TCCR0A;
+        if(pin == PIN_9  || pin == PIN_9)  reg = &TCCR1A;
+        if(pin == PIN_11 || pin == PIN_3)  reg = &TCCR2A;
+        return reg;
+    }
+
+    volatile Byte* pinToTCCRB(uint8_t pin)
+    {
+        volatile Byte* reg;
+        if(pin == PIN_6  || pin == PIN_5)  reg = &TCCR0B;
+        if(pin == PIN_9  || pin == PIN_9)  reg = &TCCR1B;
+        if(pin == PIN_11 || pin == PIN_3)  reg = &TCCR2B;
+        return reg;
+    }
+
     volatile Byte* inputRegister(uint8_t pin)
     {
         volatile Byte* reg;
