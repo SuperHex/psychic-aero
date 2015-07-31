@@ -39,14 +39,14 @@ namespace base
 
     void PWM::setPrescaler(uint8_t pin)
     {
-        *pinToTCCRB(pin) |= MaskTCCRB(pin);
+        *pinToTCCRB(pin) = MaskTCCRB(pin);
     }
 
     void PWM::run(uint8_t pin, float duty, uint8_t mode)
     {
         base::pinDirection(pin, OUTPUT);
+        this->setPrescaler(pin);
         this->setMode(pin, mode);
         this->setDutyCycle(pin, duty);
-        this->setPrescaler(pin);
     }
 }
