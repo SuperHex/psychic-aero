@@ -58,13 +58,6 @@ typedef float                    Factor;
 #define DIRECT_MODE 1
 #endif
 
-// -----* base/I2C *------
-#ifdef  __I2C__
-#define BAUD_RATE 96000
-#define TWSR_VALUE 0x00
-#define TWBR_VALUE ((F_CPU / BAUD_RATE) - 16) / 2 + 1
-#endif
-
 // -----* base/IO  *-----
 #define HIGH 1
 #define LOW  0

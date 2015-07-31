@@ -2,7 +2,7 @@
 #ifndef __IMU__
 #define __IMU__
 
-#include "../base/I2C.h"
+#include "../base/TWI.h"
 #include "../config/Registers.h"
 #include "../config/config.h"
 #include "../base/container.hpp"
@@ -13,7 +13,7 @@ namespace core
     class IMU
     {
     private:
-        base::I2C mpu;
+        base::TWI mpu;
 
     public:
         IMU() : mpu(MPU6050)

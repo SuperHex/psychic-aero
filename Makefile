@@ -4,16 +4,16 @@ export BUILD_PATH=build
 export MAKE_FLAGS= -g -Os -std=c++11 -mmcu=$(MCU)
 export COMPILE=$(MAKE) $(MAKE_FLAGS)
 
-all : I2C.o IMU.o container.h PID.h PWM.o motorMap.o util.h SPI.h sonar.o IO.o Main.o
+all : TWI.o IMU.o container.h PID.h PWM.o motorMap.o util.h SPI.h sonar.o IO.o Main.o
 	cd $(BUILD_PATH) && \
-	$(COMPILE) Main.o I2C.o IMU.o motorMap.o IO.o sonar.o -o psychic-aero.elf && \
+	$(COMPILE) Main.o TWI.o IMU.o motorMap.o IO.o sonar.o -o psychic-aero.elf && \
 	avr-objcopy -j .text -j .data -O ihex psychic-aero.elf psychic-aero.hex
 
 clean :
 	rm build/*
 
-I2C.o : config/config.h base/I2C.cpp base/I2C.h
-	$(MAKE) -Os -mmcu=$(MCU) -c -std=c++11 base/I2C.cpp -o $(BUILD_PATH)/I2C.o
+TWI.o : config/config.h base/TWI.cpp base/TWI.h
+	$(MAKE) -Os -mmcu=$(MCU) -c -std=c++11 base/TWI.cpp -o $(BUILD_PATH)/TWI.o
 
 IMU.o : config/Registers.h core/IMU.h core/IMU.cpp base/container.hpp
 	$(MAKE) -Os -mmcu=$(MCU) -c -std=c++11 core/IMU.cpp -o $(BUILD_PATH)/IMU.o
@@ -25,7 +25,7 @@ PID.h : algorithm/PID.hpp
 	$(MAKE) -Os -mmcu=$(MCU) -std=c++11 algorithm/PID.hpp -o $(BUILD_PATH)/PID.h.gch
 
 PWM.o : config/config.h
-	$(MAKE) -Os -mmcu=$(MCU) -c -std=c++11 base/PWM.template.hpp -o $(BUILD_PATH)/PWM.h.gch
+	$(MAKE) -Os -mmcu=$(MCU) -c -std=c++11 base/PWM.cpp -o $(BUILD_PATH)/PWM.o
 
 motorMap.o : algorithm/motorMap.h algorithm/motorMap.cpp
 	$(MAKE) -Os -mmcu=$(MCU) -c -std=c++11 algorithm/motorMap.cpp -o $(BUILD_PATH)/motorMap.o
