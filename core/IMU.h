@@ -10,16 +10,13 @@
 
 namespace core
 {
-    class IMU
+    class IMU : base::TWI
     {
-    private:
-        base::TWI mpu;
-
     public:
-        IMU() : mpu(MPU6050)
+        IMU()
         {
             // unable sleep mode
-            mpu.writeByte(PWR_MGMT_1, 0x00);
+            this->writeByte(0x68, PWR_MGMT_1, 0x00);
         }
 
         // This function using the base/I2C library to communicate with
