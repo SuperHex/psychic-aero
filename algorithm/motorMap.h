@@ -1,5 +1,5 @@
-#ifndef __motorMap__
-#define __motorMap__
+#ifndef __MotorMap__
+#define __MotorMap__
 
 #include "../config/config.h"
 #include "../util/util.template.hpp"
@@ -31,17 +31,18 @@ namespace algorithm
     // Here we have defined two modes, CROSS_MODE and DIRECT_MODE.
     // In CROSS_MODE the copter will fly like 'X',
     // and in DIRECT_MODE it will behave like '+'.
-    class motorMap
+    class MotorMap
     {
         bool mode;
         int16_t* throttle;
         base::container<float*> factors;
     public:
-        motorMap(int16_t  mode,
+        MotorMap(int16_t  mode,
                  int16_t* throttle,
                  base::container<float*> factors);
         void setMode(bool m);
-
+        void setThrottle(int16_t* t);
+        void setFactor(base::container<float*>);
         // Run() takes PID output and return duty cycle
         // we should set to PWM regulator. Value greater
         // than 255 will be clamp to 255 since it represent

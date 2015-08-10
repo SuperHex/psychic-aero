@@ -53,10 +53,8 @@ typedef float                    Factor;
 // #define Kd 5.5
 
 // -----* algorithm/motoMap *-----
-#ifdef  __motorMap__
 #define CROSS_MODE  0
 #define DIRECT_MODE 1
-#endif
 
 // -----* base/IO  *-----
 #define HIGH 1
@@ -96,7 +94,6 @@ typedef float                    Factor;
 #define PWM_PIN_5  PB3
 
 // -----* core/IMU *-----
-#ifdef  __IMU__
 // complementary filter ratio
 #define Ka 1
 #define Kb 1.5
@@ -104,6 +101,5 @@ typedef float                    Factor;
 #define NORMAL_GYR (Kb/(Ka+Kb))
 #define ARC_PI 57.2975 // a shortcut of 180/pi
 #define SAMPLE_TIME 100 // sample time = 100ms
-#endif
 
 #endif

@@ -48,5 +48,6 @@ namespace base
         this->setPrescaler(pin);
         this->setMode(pin, mode);
         this->setDutyCycle(pin, duty);
+        this->started = true;
     }
 }

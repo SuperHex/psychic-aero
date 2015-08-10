@@ -29,6 +29,9 @@ namespace base
         void setMode(uint8_t, uint8_t);
         void setPrescaler(uint8_t);
         void run(uint8_t, float duty_time, uint8_t mode);
+
+    protected:
+        bool started;
     };
 }
 

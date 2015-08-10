@@ -11,7 +11,7 @@ namespace algorithm
     template<class T>
     class PID
     {
-    private:
+    protected:
         base::container<float> factor;
         base::container<T> previous;
         T setpoint;
@@ -25,7 +25,14 @@ namespace algorithm
             this->factor[1] = Ki / (Kp + Ki + Kd);
             this->factor[2] = Kd / (Kp + Ki + Kd);
         }
+
+        PID() : setpoint()
+        {
+            this->newFactor(0.3, 0.4, 0.3);
+        }
+
         void newSetpoint(T);
+        void newFactor(float Kp, float Ki, float Kd);
         T proportional(T);
         T integral(T);
         T derivative(T);
@@ -36,6 +43,14 @@ namespace algorithm
     void PID<T>::newSetpoint(T val)
     {
         this->setpoint = val;
+    }
+
+    template<class T>
+    void PID<T>::newFactor(float Kp, float Ki, float Kd)
+    {
+        this->factor[0] = Kp / (Kp + Ki + Kd);
+        this->factor[1] = Ki / (Kp + Ki + Kd);
+        this->factor[2] = Kd / (Kp + Ki + Kd);
     }
 
     template<class T>

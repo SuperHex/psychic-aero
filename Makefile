@@ -42,5 +42,8 @@ IO.o : base/IO.h base/IO.cpp
 sonar.o : module/sonar.h module/sonar.cpp IO.o
 	$(COMPILE) -c module/sonar.cpp -o $(BUILD_PATH)/sonar.o
 
+Motor.o : core/Motor.h core/Motor.cpp
+	$(COMPILE) -c core/Motor.cpp -o $(BUILD_PATH)/Motor.o
+
 Main.o : Main.cpp
 	$(COMPILE) -c Main.cpp -o $(BUILD_PATH)/Main.o
