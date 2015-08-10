@@ -15,6 +15,7 @@ namespace core
     public:
         IMU()
         {
+            this->init();
             // unable sleep mode
             this->writeByte(0x68, PWR_MGMT_1, 0x00);
         }
