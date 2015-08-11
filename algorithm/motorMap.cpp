@@ -26,7 +26,7 @@ namespace algorithm
         this->factors = fact;
     }
 
-    void MotorMap::run(Vector& pid, double* result)
+    void MotorMap::run(Vector& pid, int16_t* result)
     {
         if (this->mode == CROSS_MODE)
         {
@@ -50,7 +50,7 @@ namespace algorithm
             {
                 if(result[i] > 2500) result[i] = 2500;
                 if(result[i] < 0   ) result[i] = 0;
-                result[i] = util::scale(result[i], 0.0, 2500.0, 0.25, 0.5);
+                util::scale(result[i], 0, 2500, 0.25, 0.5);
             }
         }
         if (this->mode == DIRECT_MODE)

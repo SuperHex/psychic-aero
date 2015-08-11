@@ -26,7 +26,7 @@ namespace core
         void holdOn(base::container<float> angle);
 
     protected:
-        double res[4];
+        int16_t res[4];
         MeasureValue measure;
         Vector angle;
     };

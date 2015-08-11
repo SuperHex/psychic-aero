@@ -5,9 +5,8 @@ int16_t core::IMU::fromByte(Byte lsb, Byte msb)
     return ((int16_t)msb << 8 | (int16_t)lsb);
 }
 
-MeasureValue core::IMU::getRaw()
+MeasureValue& core::IMU::getRaw(MeasureValue& m)
 {
-    MeasureValue m;
     int16_t x = fromByte(this->readByte(0x68, ACC_X_L), this->readByte(0x68, ACC_X_H));
     int16_t y = fromByte(this->readByte(0x68, ACC_Y_L), this->readByte(0x68, ACC_Y_H));
     int16_t z = fromByte(this->readByte(0x68, ACC_Z_L), this->readByte(0x68, ACC_Z_H));

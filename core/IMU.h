@@ -23,7 +23,7 @@ namespace core
         // This function using the base/I2C library to communicate with
         // IMU chip, returns 3x3 raw measure value matrix directly.
         // As our measure is a 16-bit value, it will take msb and lsb to int.
-        MeasureValue getRaw();
+        MeasureValue& getRaw(MeasureValue& m);
 
         // This function will convert two significant byte to a 16-bit int.
         int16_t       fromByte(unsigned char lsb, unsigned char msb);

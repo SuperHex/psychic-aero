@@ -9,7 +9,7 @@ namespace core
 
     void Motor::holdOn(base::container<float> plane)
     {
-        this->angle = this->toAngle(this->getRaw(), this->angle);
+        this->angle = this->toAngle(this->getRaw(measure), this->angle);
         this->newSetpoint(plane);
         base::container<float> diff = this->calculate(angle);
         this->MotorMap::run(diff, this->res);
