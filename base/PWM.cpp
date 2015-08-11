@@ -4,7 +4,7 @@ namespace base
 {
     void PWM::setDutyCycle(uint8_t pin, float duty)
     {
-        if(pin == PIN_3 || pin == PIN_11)
+        if(pin == PIN_9 || pin == PIN_10)
             *pinToOCR16(pin) = (uint16_t)(255 * duty);
         else
             *pinToOCR(pin) = (uint8_t)(255 * duty);
@@ -12,7 +12,7 @@ namespace base
 
     void PWM::setMode(uint8_t pin, uint8_t mode)
     {
-        if(pin == PIN_3 || pin == PIN_11)
+        if(pin == PIN_9 || pin == PIN_10)
         {
             switch (mode) {
                 case FAST_PWM :
