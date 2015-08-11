@@ -47,7 +47,7 @@ namespace algorithm
         // we should set to PWM regulator. Value greater
         // than 255 will be clamp to 255 since it represent
         // full power.
-        void run(Vector& pid, int16_t* result);
+        void run(Vector& pid, double* result);
     };
 }
 
