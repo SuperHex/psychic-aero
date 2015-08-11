@@ -97,9 +97,9 @@ namespace base
     {
         if(pin == PIN_6 || pin == PIN_5)
             return (1 << WGM00) |  (1 <<WGM01) | (1 << COM0A1) |  (1 <<COM0B1);
-        if(pin == PIN_9 || pin == PIN_10)
+        if(pin == PIN_3 || pin == PIN_11)
             return (1 << WGM10) | (1 << COM1A1) |  (1 <<COM1B1);
-        if(pin == PIN_11 || pin == PIN_3)
+        if(pin == PIN_9 || pin == PIN_10)
             return (1 << WGM20) |  (1 <<WGM21) | (1 << COM2A1) |  (1 <<COM2B1);
     }
 
@@ -107,9 +107,9 @@ namespace base
     {
         if(pin == PIN_6 || pin == PIN_5)
             return (1 << WGM00) | (1 << COM0A1) | (1 << COM0B1);
-        if(pin == PIN_9 || pin == PIN_10)
+        if(pin == PIN_3 || pin == PIN_11)
             return (1 << WGM10) | (1 << COM1A1) | (1 << COM1B1);
-        if(pin == PIN_11 || pin == PIN_3)
+        if(pin == PIN_9 || pin == PIN_10)
             return (1 << WGM20) | (1 << COM2A1) | (1 << COM2B1);
     }
 
@@ -117,17 +117,17 @@ namespace base
     {
         if(pin == PIN_6 || pin == PIN_5)
             return (1 << CS02);
-        if(pin == PIN_9 || pin == PIN_10)
+        if(pin == PIN_3 || pin == PIN_11)
             return (1 << CS12);
-        if(pin == PIN_11 || pin == PIN_3)
+        if(pin == PIN_9 || pin == PIN_10)
             return (1 << CS22);
     }
 
     volatile uint16_t* pinToOCR16(uint8_t pin)
     {
         volatile uint16_t* reg;
-        if(pin == PIN_9)  reg = &OCR1A;
-        if(pin == PIN_10) reg = &OCR1B;
+        if(pin == PIN_3)  reg = &OCR1A;
+        if(pin == PIN_11) reg = &OCR1B;
         return reg;
     }
 
@@ -135,8 +135,8 @@ namespace base
     {
         volatile Byte* reg;
         if(pin == PIN_6  || pin == PIN_5)   reg = &TCCR0A;
-        if(pin == PIN_9  || pin == PIN_10)  reg = &TCCR1A;
-        if(pin == PIN_11 || pin == PIN_3)   reg = &TCCR2A;
+        if(pin == PIN_3  || pin == PIN_11)  reg = &TCCR1A;
+        if(pin == PIN_9 || pin == PIN_10)   reg = &TCCR2A;
         return reg;
     }
 
@@ -144,8 +144,8 @@ namespace base
     {
         volatile Byte* reg;
         if(pin == PIN_6  || pin == PIN_5)   reg = &TCCR0B;
-        if(pin == PIN_9  || pin == PIN_10)  reg = &TCCR1B;
-        if(pin == PIN_11 || pin == PIN_3)   reg = &TCCR2B;
+        if(pin == PIN_3  || pin == PIN_11)  reg = &TCCR1B;
+        if(pin == PIN_9 || pin == PIN_10)   reg = &TCCR2B;
         return reg;
     }
 
