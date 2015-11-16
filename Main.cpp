@@ -5,6 +5,7 @@
 #include "base/IO.h"
 #include "base/PWM.h"
 #include "base/SPI.template.hpp"
+#include "base/USART.h"
 #include "config/config.h"
 #include "config/Registers.h"
 #include "core/IMU.h"

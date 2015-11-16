@@ -4,7 +4,7 @@ export BUILD_PATH=build
 export MAKE_FLAGS= -g -Os -std=c++11 -mmcu=$(MCU)
 export COMPILE=$(MAKE) $(MAKE_FLAGS)
 
-all : TWI.o IMU.o container.h PID.h PWM.o motorMap.o util.h SPI.h sonar.o IO.o Main.o
+all : TWI.o IMU.o container.h PID.h PWM.o motorMap.o util.h SPI.h sonar.o IO.o Main.o USART.o
 	cd $(BUILD_PATH) && \
 	$(COMPILE) Main.o TWI.o IMU.o motorMap.o IO.o sonar.o -o psychic-aero.elf && \
 	avr-objcopy -j .text -j .data -O ihex psychic-aero.elf psychic-aero.hex
@@ -35,6 +35,9 @@ util.h : util/util.template.hpp
 
 SPI.h : base/SPI.template.hpp
 	$(MAKE) $(MAKE_FLAGS) base/SPI.template.hpp -o $(BUILD_PATH)/SPI.h.gch
+
+USART.o : base/USART.h base/USART.cpp
+	$(COMPILE) -c base/USART.cpp -o $(BUILD_PATH)/USART.o
 
 IO.o : base/IO.h base/IO.cpp
 	$(COMPILE) -c base/IO.cpp -o $(BUILD_PATH)/IO.o
