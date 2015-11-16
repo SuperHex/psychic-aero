@@ -16,6 +16,18 @@
      uint8_t fastModeTCCRA(uint8_t pin);
      uint8_t phaseModeTCCRA(uint8_t pin);
      volatile Byte*   pinToTCCRB(uint8_t pin);
+
+     /*
+      * We should update our prescaler here.
+      * CSx2   CSx1   CSx0    Prescaler
+      * ---- | ---- | ---- | ----------
+      *  0   |  1   |  0   |  clk / 8
+      *  0   |  1   |  1   |  clk / 64
+      *  1   |  0   |  0   |  clk / 256
+      *  1   |  0   |  1   |  clk / 1024
+      * Here we use clk / (256 * 256) = 244Hz PWM wave.
+      * (Mode = Fast PWM, Prescaler = 256)
+      */
      uint8_t MaskTCCRB(uint8_t pin);
      volatile uint8_t*  pinToOCR(uint8_t pin);
      volatile uint16_t* pinToOCR16(uint8_t pin);

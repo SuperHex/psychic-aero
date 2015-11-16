@@ -5,10 +5,10 @@
 
 namespace util
 {
-    template<typename T>
-    T scale(T val,
+    template<typename T, typename U>
+    U scale(T val,
              const T min, const T max,
-             const T minBound, const T maxBound)
+             const U minBound, const U maxBound)
     {
         if(val > max) val = max;
         if(val < min) val = min;

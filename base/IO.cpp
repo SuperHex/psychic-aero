@@ -116,19 +116,11 @@ namespace base
     uint8_t MaskTCCRB(uint8_t pin)
     {
         if(pin == PIN_6 || pin == PIN_5)
-<<<<<<< HEAD
             return (1 << CS02);
         if(pin == PIN_9 || pin == PIN_10)
             return (1 << CS12);
         if(pin == PIN_11 || pin == PIN_3)
             return (1 << CS22);
-=======
-            return (1 << CS01);
-        if(pin == PIN_9 || pin == PIN_10)
-            return (1 << CS11);
-        if(pin == PIN_11 || pin == PIN_3)
-            return (1 << CS21);
->>>>>>> parent of deebdea... reversion
     }
 
     volatile uint16_t* pinToOCR16(uint8_t pin)
