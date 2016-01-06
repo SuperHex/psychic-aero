@@ -3,8 +3,8 @@
 #ifndef __HAL__
 #define __HAL__
 
-//#include ../config/config.h
-//#include <avr/io.h>
+#include ../config/config.h
+#include <avr/io.h>
 
 namespace base
 {
