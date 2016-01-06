@@ -8,9 +8,12 @@ namespace base
 {
     class USART
     {
-        void init(const uint32_t baud);
-        void transmit(const unsigned char data);
-        unsigned char receive();
+    public:
+        static void init(const uint32_t baud);
+        static void transmit(const unsigned char data);
+        static unsigned char receive();
+    private:
+        USART();
     };
 }
 
