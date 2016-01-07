@@ -116,14 +116,9 @@ namespace base
     typedef USART< > Serial;
 
     template< class T >
-    struct SPI : public hal< skip_init, SPI_RW >
-    {
-    public:
-        SPI(){ T::init(); }
-        virtual ~SPI();
-    };
+    struct SPI : public hal< T, SPI_RW > {};
     typedef SPI< SPI_master_init > SPIMaster;
-    typedef SPI< SPI_slave_init  > SPISlave;
+    typedef SPI< SPI_slave_init >  SPISlave;
 
 }
 
