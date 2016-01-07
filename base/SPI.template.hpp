@@ -9,7 +9,7 @@ namespace base
     class SPI
     {
     public:
-        template<size_t Mode>
+        template<size_t Mode = MASTER_MODE>
         void inline init();
         void transmit(Byte& data);
         Byte receive();
