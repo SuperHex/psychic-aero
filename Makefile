@@ -3,11 +3,16 @@ export MAKE=/usr/local/CrossPack-AVR/bin/avr-gcc
 export BUILD_PATH=build
 export MAKE_FLAGS= -g -Os -std=c++11 -mmcu=$(MCU)
 export COMPILE=$(MAKE) $(MAKE_FLAGS)
+export PORT=/dev/usb
 
 all : TWI.o IMU.o container.h PID.h PWM.o motorMap.o util.h SPI.h sonar.o IO.o Main.o USART.o
 	cd $(BUILD_PATH) && \
 	$(COMPILE) Main.o TWI.o IMU.o motorMap.o IO.o sonar.o -o psychic-aero.elf && \
 	avr-objcopy -j .text -j .data -O ihex psychic-aero.elf psychic-aero.hex
+
+upload :
+	cd $(BUILD_PATH) && \
+	avrdude -p atmega328p -c stk500v1 -P $(PORT) -U flash:w:psychic-aero.hex:i
 
 clean :
 	rm build/*
