@@ -44,6 +44,23 @@ namespace until
         }
     };
 
+    template< template< typename ... > class f >
+    struct Functor
+    {
+        template< typename a, typename b >
+        static f<b> fmap(b(*)(const a&), const f<a>&);
+    };
+
+    template< template< typename ... > class f >
+    struct Applicative
+    {
+        template< typename a >
+        static f<a> pure(const a&);
+
+        template< typename a, typename b >
+        static f<b> ap(const f<b(*)(const a&)>, const f<a>&);
+    };
+
     template< template< typename ... > class m >
     struct Monad
     {
@@ -52,6 +69,37 @@ namespace until
 
         template< typename a, typename b >
         static m<b> mbind(const m<a>&, const m<b>(*)(const a&));
+    };
+
+    template< >
+    struct Functor<Maybe>
+    {
+        template< typename a, typename b >
+        static Maybe<b> fmap(b(*function)(const a&), Maybe<a> ma)
+        {
+            Maybe<b> r;
+            if (!ma.isNothing)
+            {
+                r.value = function(ma.value);
+            }
+            return r;
+        }
+    };
+
+    template< >
+    struct Applicative<Maybe>
+    {
+        template< typename a >
+        static Maybe<a> pure(const a& val)
+        {
+            return mreturn(val);
+        }
+
+        template< typename a, typename b >
+        static Maybe<b> ap(const Maybe<b(*)(const a&)> function, const Maybe<a>& x)
+        {
+            return fmap(function.value, x);
+        }
     };
 
     template< >
