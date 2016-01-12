@@ -1,20 +1,15 @@
 #ifndef __container__
 #define __container__
 
-typedef int int16_t;
-
 namespace base
 {
-    template<class T>
-    class container
+    template< typename T >
+    struct container
     {
         T one, two, three;
 
     public:
-        container() : one(), two(), three()
-        {
-            // default construct function
-        }
+        container() : one(), two(), three(){ }
         T& get(int n);
         T  foldWithAdd();
         T  foldWithMul();
@@ -36,13 +31,15 @@ namespace base
 
         container<T>& operator*(T n)
         {
-            for(int i = 0; i<3; i++) this->get(i) = this->get(i) * n;
+            for(int i = 0; i<3; i++)
+                this->get(i) = this->get(i) * n;
             return *this;
         }
 
         container<T>& operator-(container<T>& other)
         {
-            for(int i = 0; i<3; i++) this->get(i) = this->get(i) - other.get(i);
+            for(int i = 0; i<3; i++)
+                this->get(i) = this->get(i) - other.get(i);
             return *this;
         }
 
@@ -59,13 +56,13 @@ namespace base
             return *this;
         }
 
-        T& operator[](int16_t index)
+        T& operator[](int index)
         {
             return this->get(index);
         }
     };
 
-    template<class T>
+    template< typename T >
     T& container<T>::get(int n)
     {
         switch (n)
@@ -79,13 +76,13 @@ namespace base
         }
     }
 
-    template<class T>
+    template< typename T >
     T container<T>::foldWithAdd()
     {
         return (this->get(0) + this->get(1) + this->get(2));
     }
 
-    template<class T>
+    template< typename T >
     T container<T>::foldWithMul()
     {
         return (this->get(0) + this->get(1) + this->get(2));

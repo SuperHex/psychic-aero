@@ -8,8 +8,8 @@
 
 namespace algorithm
 {
-    template<class T>
-    class PID
+    template< typename T >
+    struct PID
     {
     protected:
         base::container<float> factor;
@@ -39,13 +39,13 @@ namespace algorithm
         T calculate(T);
     };
 
-    template<class T>
+    template< typename T >
     void PID<T>::newSetpoint(T val)
     {
         this->setpoint = val;
     }
 
-    template<class T>
+    template< typename T >
     void PID<T>::newFactor(float Kp, float Ki, float Kd)
     {
         this->factor[0] = Kp / (Kp + Ki + Kd);
@@ -53,20 +53,20 @@ namespace algorithm
         this->factor[2] = Kd / (Kp + Ki + Kd);
     }
 
-    template<class T>
+    template< typename T >
     T PID<T>::proportional(T val)
     {
         return val * this->factor[0];
     }
 
-    template<class T>
+    template< typename T >
     T PID<T>::integral(T val)
     {
         this->previous[1] = this->previous[1] + (val * this->factor[1] * dt);
         return this->previous[1];
     }
 
-    template<class T>
+    template< typename T >
     T PID<T>::derivative(T val)
     {
         T v = (val - this->previous[2]) * this->factor[2];
@@ -74,7 +74,7 @@ namespace algorithm
         return v;
     }
 
-    template<class T>
+    template< typename T >
     T PID<T>::calculate(T val)
     {
         T v = val - (feedback + setpoint);

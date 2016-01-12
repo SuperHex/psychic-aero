@@ -6,16 +6,16 @@
 
 namespace base
 {
-    class SPI
+    struct SPI
     {
     public:
-        template<size_t Mode = MASTER_MODE>
+        template< size_t Mode = MASTER_MODE >
         void inline init();
         void transmit(Byte& data);
         Byte receive();
     };
 
-    template<>
+    template< >
     void inline SPI::init<MASTER_MODE>()
     {
         DDRB |= (1 << PB3)   // set MOSI as output
@@ -26,7 +26,7 @@ namespace base
              |  (1 << SPR0); // set clock as F_CPU / 16
     }
 
-    template<>
+    template< >
     void inline SPI::init<SLAVE_MODE>()
     {
         DDRB |= (1 << PB4);  // set MISO as output, all other as input
