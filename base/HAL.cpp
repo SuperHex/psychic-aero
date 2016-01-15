@@ -2,10 +2,10 @@
 
 #ifndef __HAL__
 #define __HAL__
-/*
+
 #include ../config/config.h
 #include <avr/io.h>
-*/
+
 namespace base
 {
     template< class init_traits, class rw_traits >
@@ -31,7 +31,7 @@ namespace base
     struct USART_default_init
     {
         static void init(const long baudRate)
-        {/*
+        {
             long ubrr = F_CPU / 16 / baudRate - 1;
 
             // Set baud rate
@@ -43,7 +43,7 @@ namespace base
 
             // Set frame format: 8 data, 1 stop bit, no parity check.
             // For a custom setting, please refer Atmel Datasheet page 195
-            UCSR0C = (3 << UCSZ00);*/
+            UCSR0C = (3 << UCSZ00);
         }
     };
 
@@ -51,58 +51,58 @@ namespace base
     {
     public:
         static void write(const unsigned char data)
-        {/*
+        {
             // Wait until buffer empty
             while (!(UCSR0A & (1 << UDRE0)));
             // load and send
-            UDR0 = data;*/
+            UDR0 = data;
         }
 
         static unsigned char read()
-        {/*
+        {
             // Wait until buffer empty
             while (!(UCSR0A & (1 << RXC0)));
-            return UDR0;*/
+            return UDR0;
         }
     };
 
     struct SPI_RW
     {
         static void write(unsigned char data)
-        {/*
+        {
             // To start a SPI transmission, simply feed data into SPI Data Register
             SPDR = data;
             // Wait until transmission complete
-            while (!(SPSR & (1 << SPIF)));*/
+            while (!(SPSR & (1 << SPIF)));
         }
 
         static unsigned char read()
-        {/*
+        {
             // Wait until receive complete
             while (!(SPSR & (1 << SPIF)));
-            return SPDR;*/
+            return SPDR;
         }
     };
 
     struct SPI_master_init
     {
         static void init()
-        {/*
+        {
             DDRB |= (1 << PB3)   // set MOSI as output
                  |  (1 << PB5)   // set SCK  as output
                  |  (1 << PB2);  // set SS'  as output since we have only one slave
             SPCR  = (1 << SPE)   // enable SPI
                  |  (1 << MSTR)  // set SPI as master
-                 |  (1 << SPR0); // set clock as F_CPU / 16*/
+                 |  (1 << SPR0); // set clock as F_CPU / 16
         }
     };
 
     struct SPI_slave_init
     {
         static void init()
-        {/*
+        {
             DDRB |= (1 << PB4);  // set MISO as output, all other as input
-            SPCR  = (1 << SPE);  // enable SPI*/
+            SPCR  = (1 << SPE);  // enable SPI
         }
     };
 
