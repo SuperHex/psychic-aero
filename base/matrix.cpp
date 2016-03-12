@@ -47,36 +47,70 @@ namespace base
                 }
             }
 
-            void fillwith(value_type* list)
+            void fillWithList(const value_type* list)
             {
-                auto len = GETSIZE(list);
-                //static_assert((mrow * mcol) <= len, "matrix need more elements");
-
-                unsigned int index = 0;
-                traverse([&index, &list](value_type i){ i = list[index++]; });
+                unsigned index = 0;
+                traverse(
+                    [&](value_type i)
+                    {
+                        i = list[index++];
+                    }
+                );
             }
 
-            inline value_type at(unsigned row, unsigned col)
+            void fillWith(const value_type v)
             {
-                //static_assert((row <= mrow && col <= mcol), "out of bound");
+                traverse(
+                    [=](value_type i)
+                    {
+                        i = v;
+                    }
+                );
+            }
+
+            template < unsigned row, unsigned col >
+            inline value_type at()
+            {
                 return mdata[row][col];
+            }
+
+            template < unsigned row, unsigned col >
+            inline void set(const value_type v)
+            {
+                mdata[row][col] = v;
+            }
+
+            auto operator * (const matrix& m) -> decltype(this)
+            {
+                for(int i = 0; i < mrow; i++)
+                {
+                    auto reminder = 0;
+                    for(int j = 0; j < mcol; j++)
+                    {
+                        reminder += mdata[i][j] * m.at<j,i>();
+                    }
+                    // TODO!
+                }
             }
 
         private:
             unsigned int  mrow;
             unsigned int  mcol;
-            value_type**  mdata;
+            value_type** mdata;
         };
-
-        int main()
-        {
-            matrix<3,3,float> m;
-            float f[9] = {1,2,3,4,5,6,7,8,9};
-            m.fillwith(f);
-            return 0;
-        }
-
     }
+}
+
+// just for test.
+int main()
+{
+    using namespace base::matrix;
+    matrix<3,3,float> m;
+    float f[9] = {1,2,3,4,5,6,7,8,9};
+    m.fillWithList(f);
+    m.set<2,2>(3);
+    int d = m.at<2,3>();
+    return 0;
 }
 
 #endif
