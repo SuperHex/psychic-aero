@@ -12,6 +12,8 @@ namespace base
         {
         public:
             typedef T value_type;
+            const unsigned rowSize = Row;
+            const unsigned colSize = Col;
 
             // since std::vector is absence in avr-gcc, I will use a plain
             // two-dimensional array to represent a matrix, e.g. mdata[row][col]
@@ -80,16 +82,22 @@ namespace base
                 mdata[row][col] = v;
             }
 
-            auto operator * (const matrix& m) -> decltype(this)
+            template < unsigned R, unsigned C >
+            auto operator * (const matrix<R,C,value_type>& m)
+                -> decltype(matrix<Row,C,value_type>())
             {
-                for(int i = 0; i < mrow; i++)
+                matrix<mrow, m.colSize(), value_type> ret = new matrix();
+                for(int index = 0; index < mrow; index++)
                 {
-                    auto reminder = 0;
-                    for(int j = 0; j < mcol; j++)
+                    for(int i = 0; i < m.colSize(); i++)
                     {
-                        reminder += mdata[i][j] * m.at<j,i>();
+                        auto reminder = 0;
+                        for(int j = 0; j < mcol; j++)
+                        {
+                            reminder += mdata[i][j] * m.at<j,i>();
+                        }
+                        ret[index][i] = reminder;
                     }
-                    // TODO!
                 }
             }
 
